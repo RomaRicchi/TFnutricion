@@ -1,8 +1,6 @@
-Persistencia\DietaData.class
-Modelo\Paciente.class
-Modelo\Dieta.class
-Persistencia\PacienteData.class
-Persistencia\ComidaData.class
 laboratorio\tfnutricionista\TFNutricionista.class
-Modelo\Comida.class
+Vistas\MenuNutricionista.class
+Modelo\Paciente.class
 Persistencia\Conexion.class
+Persistencia\PacienteData.class
+Vistas\MenuNutricionista$1.class

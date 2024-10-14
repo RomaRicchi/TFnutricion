@@ -45,8 +45,8 @@ public class TFNutricionista {
             System.out.println("9. Buscar paciente por DNI");
             System.out.println("10. Modificar paciente");
             System.out.println("11. Listar todos los pacientes");
-            /*System.out.println("12. Listar pacientes con peso pendiente");
-            System.out.println("13. Modificar peso actual");
+            System.out.println("12. Listar pacientes con peso pendiente");
+            /*System.out.println("13. Modificar peso actual");
             System.out.println("14. Buscar comidas por calorías");*/
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");

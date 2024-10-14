@@ -29,7 +29,7 @@ public class PacienteData {
    
 
     public void agregarPaciente(Paciente paciente) {
-        String sql = "INSERT INTO paciente(nombre_completo, dni, domicilio, celular) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO paciente(nombre_completo, dni, domicilio, celular, estado) VALUES (?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -37,6 +37,7 @@ public class PacienteData {
             ps.setInt(2, paciente.getDni());
             ps.setString(3, paciente.getDomicilio());
             ps.setString(4, paciente.getCelular());
+            ps.setBoolean(5, paciente.isEstado());
 
             // Ejecutar la actualización
             ps.executeUpdate();
@@ -74,6 +75,7 @@ public class PacienteData {
                 paciente.setDni(rs.getInt("dni"));
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setCelular(rs.getString("celular"));
+                paciente.setEstado(rs.getBoolean("estado"));
             }
 
             rs.close();
@@ -98,7 +100,7 @@ public class PacienteData {
             ps.setString(3, domicilio);
             ps.setString(4, celular);
             ps.setBoolean(5, estado);
-            ps.setInt(5, idPaciente);
+            ps.setInt(6, idPaciente);
 
             int filasAfectadas = ps.executeUpdate();
 
@@ -131,7 +133,7 @@ public class PacienteData {
                 paciente.setDni(rs.getInt("dni"));
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setCelular(rs.getString("celular"));
-
+                paciente.setEstado(rs.getBoolean("estado"));
                 listaPacientes.add(paciente);
             }
 
@@ -148,7 +150,7 @@ public class PacienteData {
     public List<Paciente> listarPacientesConPesoPendiente() {
         List<Paciente> listaPacientes = new ArrayList<>();
 
-        String sql = "SELECT p.idPaciente, p.nombre_completo, p.dni, p.domicilio, p.celular " +
+        String sql = "SELECT p.idPaciente, p.nombre_completo, p.dni, p.domicilio, p.celular, p.estado " +
                      "FROM paciente p " +
                      "INNER JOIN dieta d ON p.idPaciente = d.idPaciente " +
                      "WHERE d.fecha_fin <= CURDATE() AND d.peso_actual > d.peso_buscado";
@@ -164,7 +166,7 @@ public class PacienteData {
                 paciente.setDni(rs.getInt("dni"));
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setCelular(rs.getString("celular"));
-
+                paciente.setEstado(rs.getBoolean("estado"));
                 listaPacientes.add(paciente);
             }
 
@@ -179,10 +181,5 @@ public class PacienteData {
     }
 
 
-    
-    
-
-
-    
 }
 
