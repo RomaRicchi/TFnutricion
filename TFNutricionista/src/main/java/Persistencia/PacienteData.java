@@ -4,8 +4,9 @@
  */
 package Persistencia;
 
-import Modelo.Comida;
+
 import Modelo.Paciente;
+import Persistencia.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,7 +36,7 @@ public class PacienteData {
             ps.setString(1, paciente.getNombre_completo());
             ps.setInt(2, paciente.getDni());
             ps.setString(3, paciente.getDomicilio());
-            ps.setLong(4, paciente.getCelular());
+            ps.setString(4, paciente.getCelular());
 
             // Ejecutar la actualización
             ps.executeUpdate();
@@ -72,7 +73,7 @@ public class PacienteData {
                 paciente.setNombre_completo(rs.getString("nombre_completo"));
                 paciente.setDni(rs.getInt("dni"));
                 paciente.setDomicilio(rs.getString("domicilio"));
-                paciente.setCelular(rs.getLong("celular"));
+                paciente.setCelular(rs.getString("celular"));
             }
 
             rs.close();
@@ -87,16 +88,16 @@ public class PacienteData {
 
     
             
-    public void modificarPaciente(int idPaciente, String nombre_completo, int dni, String domicilio, long celular) {
-        String sql = "UPDATE paciente SET nombre_completo = ?, dni = ?, domicilio = ?, celular = ? WHERE idPaciente = ?";
+    public void modificarPaciente(int idPaciente, String nombre_completo, int dni, String domicilio, String celular, boolean estado) {
+        String sql = "UPDATE paciente SET nombre_completo = ?, dni = ?, domicilio = ?, celular = ?, estado=?  WHERE idPaciente = ?";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, nombre_completo);
             ps.setInt(2, dni);
             ps.setString(3, domicilio);
-            ps.setLong(4, celular);
-
+            ps.setString(4, celular);
+            ps.setBoolean(5, estado);
             ps.setInt(5, idPaciente);
 
             int filasAfectadas = ps.executeUpdate();
@@ -129,7 +130,7 @@ public class PacienteData {
                 paciente.setNombre_completo(rs.getString("nombre_completo"));
                 paciente.setDni(rs.getInt("dni"));
                 paciente.setDomicilio(rs.getString("domicilio"));
-                paciente.setCelular(rs.getLong("celular"));
+                paciente.setCelular(rs.getString("celular"));
 
                 listaPacientes.add(paciente);
             }
@@ -162,7 +163,7 @@ public class PacienteData {
                 paciente.setNombre_completo(rs.getString("nombre_completo"));
                 paciente.setDni(rs.getInt("dni"));
                 paciente.setDomicilio(rs.getString("domicilio"));
-                paciente.setCelular(rs.getLong("celular"));
+                paciente.setCelular(rs.getString("celular"));
 
                 listaPacientes.add(paciente);
             }

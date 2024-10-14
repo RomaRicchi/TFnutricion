@@ -4,10 +4,9 @@
 
 package laboratorio.tfnutricionista;
 
-import Modelo.Comida;
+
 import Modelo.Paciente;
-import Persistencia.ComidaData;
-import Persistencia.DietaData;
+
 import Persistencia.PacienteData;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
@@ -26,8 +25,8 @@ public class TFNutricionista {
 
     public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
-        ComidaData comidaService = new ComidaData();
-        DietaData dietaService = new DietaData();
+        /*ComidaData comidaService = new ComidaData();
+        DietaData dietaService = new DietaData();*/
         PacienteData pacienteService = new PacienteData();
 
         int opcion = 0;
@@ -35,26 +34,26 @@ public class TFNutricionista {
 
         do {
             System.out.println("=== MENÚ PRINCIPAL ===");
-            System.out.println("1. Agregar comida");
+            /*System.out.println("1. Agregar comida");
             System.out.println("2. Buscar comida");
             System.out.println("3. Modificar comida");
             System.out.println("4. Listar todas las comidas");
             System.out.println("5. Agregar comida a dieta");
             System.out.println("6. Eliminar comida de dieta");
-            System.out.println("7. Listar comidas de una dieta");
+            System.out.println("7. Listar comidas de una dieta");*/
             System.out.println("8. Agregar paciente");
             System.out.println("9. Buscar paciente por DNI");
             System.out.println("10. Modificar paciente");
             System.out.println("11. Listar todos los pacientes");
-            System.out.println("12. Listar pacientes con peso pendiente");
+            /*System.out.println("12. Listar pacientes con peso pendiente");
             System.out.println("13. Modificar peso actual");
-            System.out.println("14. Buscar comidas por calorías");
+            System.out.println("14. Buscar comidas por calorías");*/
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
 
             switch (opcion) {
-                case 1:
+                /*case 1:
                     // Agregar comida
                     scanner.nextLine();
                     System.out.print("Ingrese nombre de la comida: ");
@@ -127,7 +126,7 @@ public class TFNutricionista {
                     for (Comida c : comidasDeDieta) {
                         System.out.println(c);
                     }
-                    break;
+                    break;*/
 
                 case 8:
                     // Agregar paciente
@@ -140,8 +139,10 @@ public class TFNutricionista {
                     System.out.print("Ingrese domicilio del paciente: ");
                     String domicilioPaciente = scanner.nextLine();
                     System.out.print("Ingrese celular del paciente: ");
-                    long celularPaciente = scanner.nextLong();
-                    Paciente nuevoPaciente = new Paciente( nombrePaciente, dniPaciente, domicilioPaciente, celularPaciente);
+                    String celularPaciente = scanner.nextLine();
+                    System.out.print("Ingrese estado del paciente: ");
+                    Boolean estadoPaciente = scanner.nextBoolean();
+                    Paciente nuevoPaciente = new Paciente( nombrePaciente, dniPaciente, domicilioPaciente, celularPaciente, estadoPaciente);
                     pacienteService.agregarPaciente(nuevoPaciente);
                     break;
 
@@ -170,8 +171,10 @@ public class TFNutricionista {
                     System.out.print("Ingrese el nuevo domicilio del paciente: ");
                     domicilioPaciente = scanner.nextLine();
                     System.out.print("Ingrese el nuevo celular del paciente: ");
-                    celularPaciente = scanner.nextLong();
-                    pacienteService.modificarPaciente(idPaciente, nombrePaciente, dniPaciente, domicilioPaciente, celularPaciente);
+                    celularPaciente = scanner.nextLine();
+                    System.out.print("Ingrese estado del paciente: ");
+                    estadoPaciente = scanner.nextBoolean();
+                    pacienteService.modificarPaciente(idPaciente, nombrePaciente, dniPaciente, domicilioPaciente, celularPaciente, estadoPaciente);
                     break;
 
                 case 11:
@@ -182,7 +185,7 @@ public class TFNutricionista {
                     }
                     break;
 
-                case 12:
+                /*case 12:
                     // Listar pacientes con peso pendiente
                     List<Paciente> pacientesConPesoPendiente = pacienteService.listarPacientesConPesoPendiente();
                     for (Paciente p : pacientesConPesoPendiente) {
@@ -233,7 +236,7 @@ public class TFNutricionista {
                             System.out.println(c);  // Imprimir cada comida que cumple con la condición
                         }
                     }
-                    break;
+                    break;*/
 
                 case 0:
                     System.out.println("Saliendo...");

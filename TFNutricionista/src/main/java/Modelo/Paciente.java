@@ -13,26 +13,28 @@ public class Paciente {
     private String nombre_completo;
     private int dni;
     private String domicilio;
-    private Long celular;
+    private String celular;
+    private boolean estado;
     
 
     public Paciente() {
     }
 
-    public Paciente(String nombre_completo, int dni, String domicilio, Long celular) {
+    public Paciente(String nombre_completo, int dni, String domicilio, String celular, boolean estado) {
         this.nombre_completo = nombre_completo;
         this.dni = dni;
         this.domicilio = domicilio;
         this.celular = celular;
+        this.estado = estado;
     }
 
-
-    public Paciente(int idPaciente, String nombre_completo,int dni, String domicilio, Long celular) {
+    public Paciente(int idPaciente, String nombre_completo, int dni, String domicilio, String celular, boolean estado) {
         this.idPaciente = idPaciente;
         this.nombre_completo = nombre_completo;
         this.dni = dni;
         this.domicilio = domicilio;
         this.celular = celular;
+        this.estado = estado;
     }
 
     public int getIdPaciente() {
@@ -67,17 +69,27 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
-    public Long getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(Long celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Paciente{" + "idPaciente=" + idPaciente + ", nombre_completo=" + nombre_completo + ", dni=" + dni + ", domicilio=" + domicilio + ", celular=" + celular + '}';
+        return "Paciente{" + "idPaciente=" + idPaciente + ", nombre_completo=" + nombre_completo + ", dni=" + dni + ", domicilio=" + domicilio + ", celular=" + celular + ", estado=" + estado + '}';
     }
-
+    
+    
+    
 }
